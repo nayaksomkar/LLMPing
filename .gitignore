@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+.env
+
+# Editor and cache
+.pytest_cache/
+.mypy_cache/
+.vscode/
+.idea/
+.DS_Store
+*.log
+
+tests

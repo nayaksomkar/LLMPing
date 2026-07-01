@@ -1,0 +1,22 @@
+{
+  "defaultProvider": "mistral",
+  "defaultModel": "mistral-small-latest",
+  "providerModels": [
+    [
+      "google_genai",
+      "gemini-2.5-flash"
+    ],
+    [
+      "mistral",
+      "mistral-small-latest"
+    ],
+    [
+      "groq",
+      "llama-3.1-8b-instant"
+    ],
+    [
+      "cerebras",
+      "gpt-oss-120b"
+    ]
+  ]
+}
