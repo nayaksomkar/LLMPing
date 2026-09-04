@@ -46,6 +46,11 @@ def build_chain(provider: str, model: str):
         from langchain_openai import ChatOpenAI
 
         llm = ChatOpenAI(model=model, api_key=api_key, base_url="https://api.cerebras.ai/v1")
+    elif provider == "nvidia":
+        # NVIDIA NIM exposes an OpenAI-compatible endpoint.
+        from langchain_openai import ChatOpenAI
+
+        llm = ChatOpenAI(model=model, api_key=api_key, base_url="https://integrate.nvidia.com/v1")
     else:
         raise ValueError(f"Unsupported provider: {provider}")
 
