@@ -39,7 +39,8 @@
       "Shell(docker stop llmping 2>/dev/null # Get actual keys from host env GROQ=$(env | grep \"^GROQ_API_KEY=\" | cut -d= -f2-) MISTRAL=$(env | grep \"^MISTRAL_API_KEY=\" | cut -d= -f2-) GEMINI=$(env | grep \"^GEMINI_API_KEY=\" | cut -d= -f2-) CEREBRAS=$(env | grep \"^CEREBRAS_API_KEY=\" | cut -d= -f2-) # Create .env with only API keys cat > /home/nsm/Documents/githubREPO/LLMPing/.env << EOF GROQ_API_KEY=$GROQ MISTRAL_API_KEY=$MISTRAL GEMINI_API_KEY=$GEMINI CEREBRAS_API_KEY=$CEREBRAS EOF docker run --rm -d -p 8000:8000 --env-file /home/nsm/Documents/githubREPO/LLMPing/.env --name llmping llmping 2>&1)",
       "Shell(curl -s -X POST http://localhost:8000/chat  -H Content-Type: application/json  -d {\"session_id\": \"test\", \"query\": \"Say hi in 3 words\"})",
       "Shell(docker stop llmping 2>/dev/null; docker build -t llmping . 2>&1 | tail -5)",
-      "Shell( curl:*)"
+      "Shell( curl:*)",
+      "Shell(python -c import sys,json; d=json.load(sys.stdin); print(f'Answer: {d[\"answer\"][:50]}... | Provider: {d[\"provider\"]}'))"
     ],
     "deny": [],
     "defaultMode": "default"

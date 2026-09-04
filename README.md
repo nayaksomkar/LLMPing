@@ -197,6 +197,8 @@ curl -X POST http://localhost:8000/chat \
   -d '{"query": "Hello", "session_id": "user-1"}'
 ```
 
+**Response size:** Casual/small queries → short answers. Complex/longer queries → detailed answers. LLM decides based on query.
+
 **Response:**
 ```json
 {
