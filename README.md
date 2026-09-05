@@ -87,15 +87,19 @@ NVIDIA_API_KEY=your_key
 
 ```json
 {
+  "defaultProvider": "google_genai",
+  "defaultModel": "gemini-2.5-flash",
   "providerModels": [
     ["google_genai", "gemini-2.5-flash"],
     ["mistral", "mistral-small-latest"],
-    ["groq", "llama-3.1-8b-instant"],
+    ["groq", "openai/gpt-oss-20b"],
     ["cerebras", "gpt-oss-120b"],
-    ["nvidia", "meta/llama-3.1-8b-instruct"]
+    ["nvidia", "openai/gpt-oss-20b"]
   ],
-  "sessionTTL": 3600,
-  "sessionMaxHistory": 20,
+  "contextProvider": "groq",
+  "contextModel": "openai/gpt-oss-20b",
+  "sessionTTL": 1800,
+  "sessionMaxHistory": 5,
   "providerTimeout": 30
 }
 ```
@@ -226,7 +230,7 @@ curl "http://localhost:8000/ping?prompt=hello&provider=google_genai"
 # POST version
 curl -X POST http://localhost:8000/ping \
   -H "Content-Type: application/json" \
-  -d '{"prompt": "hello", "provider": "groq", "model": "llama-3.1-8b-instant"}'
+  -d '{"prompt": "hello", "provider": "groq", "model": "openai/gpt-oss-20b"}'
 ```
 
 **Response:** Shows `ok: true/fail` for each provider with error details.
