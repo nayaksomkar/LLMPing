@@ -20,3 +20,6 @@ wheels/
 *.log
 
 tests
+
+.commandcode
+
