@@ -111,6 +111,37 @@ NVIDIA_API_KEY=your_key
 | `sessionMaxHistory` | 20 | Max entries stored per session |
 | `providerTimeout` | 30 | Seconds before trying next provider |
 
+## CORS — Cross-Origin Resource Sharing
+
+LLMPing includes built-in CORS support so it can be called from any frontend (React, Vue, GitHub Pages, etc.).
+
+**Default behavior:** All origins are allowed (`*`), so it works out of the box.
+
+**Restrict to specific origins** (recommended for production):
+
+Set the `CORS_ORIGINS` environment variable with comma-separated URLs:
+
+```bash
+# Docker
+docker run --rm -d -p 8000:8000 --env-file .env -e CORS_ORIGINS="https://nayaksomkar.github.io,https://yourapp.com" --name llmping llmping
+
+# Or in .env
+CORS_ORIGINS=https://nayaksomkar.github.io,https://yourapp.com
+```
+
+This lets you host the API in one place and call it from multiple frontends:
+
+```javascript
+// React/Vue/any frontend
+fetch("https://your-llmping-api.com/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ query: "Hello" })
+})
+.then(res => res.json())
+.then(data => console.log(data.answer));
+```
+
 ## How session memory works (simple explanation)
 
 Think of it like **matching keywords** between what you're asking now and what you asked before.

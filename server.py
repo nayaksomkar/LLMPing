@@ -1,9 +1,11 @@
 # LLMPing FastAPI server — run `python server.py` or use Docker
 
+import os
 from typing import Optional
 
 import uvicorn
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from config import get_config_value
@@ -11,6 +13,22 @@ from lanchainfunc import call_chain
 from llm_service import AllProvidersFailed, LLMService
 
 app = FastAPI(title="LLMPing", version="0.3.0")
+
+# --- CORS Configuration ---
+# Allowed origins from env (comma-separated) or allow all by default
+_allowed_origins = os.getenv("CORS_ORIGINS", "").strip()
+if _allowed_origins:
+    _origins = [o.strip() for o in _allowed_origins.split(",") if o.strip()]
+else:
+    _origins = ["*"]  # Allow all origins by default
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Initialize the LLM service
 llm_service = LLMService()
