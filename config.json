@@ -1,15 +1,15 @@
 {
-  "defaultProvider": "mistral",
-  "defaultModel": "mistral-small-latest",
+  "defaultProvider": "google_genai",
+  "defaultModel": "gemini-2.5-flash",
   "providerModels": [
     ["google_genai", "gemini-2.5-flash"],
     ["mistral", "mistral-small-latest"],
-    ["groq", "llama-3.1-8b-instant"],
+    ["groq", "openai/gpt-oss-20b"],
     ["cerebras", "gpt-oss-120b"],
-    ["nvidia", "meta/llama-3.1-8b-instruct"]
+    ["nvidia", "openai/gpt-oss-20b"]
   ],
   "contextProvider": "groq",
-  "contextModel": "llama-3.1-8b-instant",
+  "contextModel": "openai/gpt-oss-20b",
   "sessionTTL": 1800,
   "sessionMaxHistory": 5,
   "providerTimeout": 30

@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py config.py config.json lanchainfunc.py server.py llm_service.py sessions.py entrypoint.sh ./
+COPY main.py config.py config.json lanchainfunc.py server.py llm_service.py sessions.py entrypoint.sh .env ./
 RUN chmod +x entrypoint.sh
 
 EXPOSE 8000
